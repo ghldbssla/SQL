@@ -1,0 +1,132 @@
+DB(DataBase) : 데이터들의 집합소(저장소)
+
+DBMS(DataBase Management System)
+	데이터베이스를 관리하는 시스템
+	오라클, 마리아디비, MYSQL,...
+
+RDBMS(Relational DBMS)
+	관계형 데이터베이스 관리 시스템
+	데이터들이 서로 관계를 맺고 저장되어 있는 데이터 베이스 관리 시스템
+
+쇼핑몰
+	주소, 이름, 연락처, 상품이름, 상품가격,...
+	-------------------------------------------------
+				사용자
+	-------------------------------------------------
+	    ↕					    ↕
+	고객 관리					 주문 관리
+	    ↕					    ↕
+	-------------------------------------------------
+			회원 : 주소, 이름, 연락처, ...
+			상품 : 상품이름, 상품가격, ...
+			주문 : 이름, 상품이름, 수량, ..
+=============================================================
+테이블(Table)
+	데이터가 저장될 때 표 형식으로 저장된다.
+	행 : 하나의 정보		Row, 레코드, 튜플
+	열 : 공통된 값들의 주제	Column, 속성, 필드
+
+Primary Key(PK)
+	고유한 값(각 정보들의 구별점 역할)
+	중복이 없고, 비어있지 않음
+
+Foreign Key(FK)
+	테이블끼리 관계를 맺을 때 받아오는 다른 테이블의 PK
+------------------------------------------------------------
+Oracle 설치
+	https://www.oracle.com/index.html
+	>11g 검색 > 세번째 링크 클릭 > 맨 아래쪽으로 내려서
+	Oracle Database 11g Release 2 Express Edition
+	for Windows 64 클릭 > 윈도우 버전에 맞는것 설치
+	> 체크 후 다운로드
+	ID : tedhan1204@gmail.com
+	PW : Asdf1234!
+	로그인 > 설치 시 sys,system 계정 비밀번호는 1234로 통일
+
+계정
+	SYS		: 모든 권한
+	SYSTEM		: 계정 권한
+	일반 계정(hr,...)	: 해당 계정에 있는 스키마 관리
+
+계정 풀어주기
+	cmd창에서 sqlplus > 아이디 : system / 비밀번호 : 1234
+	*(비밀번호는 입력해도 눈에 안보이는게 맞습니다!!!)
+	> ALTER USER hr IDENTIFIED BY hr ACCOUNT UNLOCK;
+	> conn hr/hr; > show user; > User is "HR" 나오면 성공
+
+IDE(통합 개발 환경)
+	DBeaver 이용
+	kedudisk.com > ID : it1000 / PW : 학생11!
+	> 수업자료 폴더 > DBMS 리소스 폴더 안의 Dbeaver 설치파일 다운로드
+	> 설치파일 실행해서 설치
+	
+프로젝트에 Database 연결하기
+	Connections 우클릭 > Create New Connection >
+	Oracle 찾아서 next > 
+		Host : localhost
+		Database : XE
+		User name : hr
+		Password : hr
+	작성 후 Edit Driver Settings 클릭 > Add File 클릭
+	> 우리가 Oracle 설치한 폴더 찾기 ( C:\oraclexe )
+	> 폴더 안으로 계속 들어가다 5개 폴더 나오면 product 폴더로 진입
+	> 계속 들어가다 여러개 폴더 나오면 jdbc폴더 진입 > lib 폴더 진입
+	> ojdbc6.jar 파일 선택 후 열기 > Test connection 클릭시
+	성공 메세지 뜨면 연결 성공!
+
+SQL문(인터프리터 언어)
+	Structured Query Language
+	한 줄씩 번역되고 빈번한 수정이 있을 때 효과적이다.
+	번역과 동시에 바로 실행된다. (따로 번역파일이 존재하지 않는다.)
+
+	DDL
+	DML
+	TCL
+	DCL
+------------------------------------------------------------
+DDL(Data Definition Language) : 데이터 정의어
+	테이블 관련된 쿼리문
+
+	CREATE	: 테이블 생성
+	ALTER	: 테이블 수정
+	DROP	: 테이블 삭제
+
+자료형(TYPE)
+	숫자	
+		NUMBER(N)	: N자리 정수
+		NUMBER(N, M)	: 전체 N자리, 소수점 M자리인 실수
+		ex) NUMBER(3, 2)	: 정수부분 1자리, 소수부분 2자리
+
+	문자열
+		CHAR(길이)	: 고정형
+			CHAR(4)에 'A' 데이터를 넣으면
+			'A^^^'  -->  빈 자리가 공백으로 채워짐
+			고정적인 길이의 데이터들을 저장하기 위해 사용
+
+		VARCHAR(길이)	: 가변형
+			VARCHR(4)에 'A' 데이터를 넣으면
+			'A'  -->  빈 공백이 생기지 않고 값의 길이로 변함
+
+		VARCHAR2(길이)	: 가변형
+			VARCHAR와 똑같음
+	날짜
+		DATE
+			서식에 맞게 날짜(시간)를 저장하는 타입
+
+테이블 만들기
+	CREAT TABLE 테이블명(
+		컬럼명1	자료형	제약조건(생략가능),
+		컬럼명2	자료형	제약조건(생략가능),
+		...,
+		CONSTRAINT 제약조건명 제약조건(컬럼)
+	)
+
+
+
+
+
+
+
+
+
+
